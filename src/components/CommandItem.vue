@@ -251,6 +251,12 @@
     border-left: 2px solid #597fc0;
   }
   
+  .command-description,
+  .command-example code {
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+    white-space: normal; 
+  }
   .command-example span {
     display: block;
     color: #64748b;

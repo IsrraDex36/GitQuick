@@ -19,13 +19,14 @@
       </button>
     </div>
     
-    <div class="container">
+    <!-- Añadimos el transition-group -->
+    <transition-group name="fade" tag="div" class="container">
       <CommandItem
-        v-for="(cmd, index) in filteredCommands"
-        :key="index"
+        v-for="(cmd) in filteredCommands"
+        :key="cmd.title" 
         v-bind="cmd"
       />
-    </div>
+    </transition-group>
     <Guiagit />
   </main>
 </template>
@@ -46,6 +47,19 @@ const filteredCommands = computed(() => {
 </script>
 
 <style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+  transform: translateY(20px); 
+}
+
+.fade-enter-to, .fade-leave-from {
+  opacity: 1;
+  transform: translateY(0); 
+}
 .wrapper {
   max-width: 1400px;
   margin: 0 auto;
@@ -114,6 +128,10 @@ const filteredCommands = computed(() => {
 }
 
 @media (max-width: 768px) {
+  
+  .app-header h1 {
+  font-size: 2rem;
+}
   .container {
     gap: 4.6rem;
     padding: 1rem;
